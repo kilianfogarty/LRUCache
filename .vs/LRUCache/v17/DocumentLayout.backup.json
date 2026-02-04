@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Kilia\\Desktop\\LRUCache\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{02633089-1011-400B-8A98-27BD14788F2E}|LRUCache.vcxproj|C:\\Users\\Kilia\\Desktop\\LRUCache\\hashmap.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{02633089-1011-400B-8A98-27BD14788F2E}|LRUCache.vcxproj|solutionrelative:hashmap.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{02633089-1011-400B-8A98-27BD14788F2E}|LRUCache.vcxproj|C:\\Users\\Kilia\\Desktop\\LRUCache\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{02633089-1011-400B-8A98-27BD14788F2E}|LRUCache.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -19,6 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "hashmap.c",
+              "DocumentMoniker": "C:\\Users\\Kilia\\Desktop\\LRUCache\\hashmap.c",
+              "RelativeDocumentMoniker": "hashmap.c",
+              "ToolTip": "C:\\Users\\Kilia\\Desktop\\LRUCache\\hashmap.c",
+              "RelativeToolTip": "hashmap.c",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-02-02T20:22:38.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Kilia\\Desktop\\LRUCache\\Source.cpp",
               "RelativeDocumentMoniker": "Source.cpp",

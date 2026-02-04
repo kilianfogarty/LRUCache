@@ -1,38 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#define INITIAL_SIZE 16
-#define LOAD_FACTOR 0.75
+#define SIZE 10
 
-struct Node {
-	char *key;
-	void *value;
-	struct Node* next;
+/*
+This is a very simple hashmap implementation for educational purposes only. It uses a simple hashing function to insert keys into
+an open-addressing hash table that uses linear probing. It will have automatic resizing. It will allow for string keys and pointers to 
+nodes in a doubly linked list to suit the overall purpose of building an LRU cache.
+*/
+
+struct hash_entry {
+	int key;
+	int value;
 };
 
-struct HashMap {
-	struct Node **buckets;
-	int size; // number of buckets
-	int count; // numner of elements
-	void (*free_value)(void*); // What does this do?
-};
-
-// keep it simple with djb2 hashing
-unsigned int hash(const char* key) {
-	unsigned long hash = 5381;
-	int c;
-	while ((c = *key++))
-		hash = ((hash << 5) + hash) + c;
-	return hash;
-}
-
-struct HashMap *create_hashmap(void (*free_value)(void*)) {
-	struct HashMap *map = malloc(sizeof(struct HashMap));
-	map->size = INITIAL_SIZE;
-	map->count = 0;
-	map->free_value = free_value;
-	map->buckets = calloc(map->size, sizeof(struct Node*));
-	return map;
-}
+struct hash_entry* hash_map[SIZE];
+struct hash_entry* tombstone;
 
