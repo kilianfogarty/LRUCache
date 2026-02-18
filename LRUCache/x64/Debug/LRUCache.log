@@ -1,0 +1,109 @@
+﻿  lru_cache.c
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(10,2): error C2061: syntax error: identifier 'Node'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(11,6): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(12,6): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(13,1): error C2059: syntax error: '}'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(18,2): error C2061: syntax error: identifier 'Node'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(19,6): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(20,6): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(21,1): error C2059: syntax error: '}'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(23,5): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(24,2): error C2065: 'Node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(24,8): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(24,29): error C2065: 'Node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(24,13): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(24,6): error C2106: '=': left operand must be l-value
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(25,7): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(29,2): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(29,8): error C2223: left of '->key' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(30,2): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(30,8): error C2223: left of '->value' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(31,2): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(31,8): error C2223: left of '->prev' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(32,2): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(32,8): error C2223: left of '->next' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(33,2): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(33,8): error C2223: left of '->h_next' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(35,9): error C2065: 'node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(35,2): warning C4047: 'return': 'int *' differs in levels of indirection from 'int'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(38,9): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(43,2): error C2065: 'LRUCache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(43,12): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(43,34): error C2065: 'LRUCache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(43,18): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(43,10): error C2106: '=': left operand must be l-value
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(44,7): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(48,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(48,9): error C2223: left of '->capacity' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(49,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(49,9): error C2223: left of '->num_of_items' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(51,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(51,9): error C2223: left of '->hashmap' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(51,43): error C2065: 'Node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(51,48): error C2059: syntax error: ')'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(52,7): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(52,14): error C2223: left of '->hashmap' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(53,8): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(53,8): warning C4022: 'free': pointer mismatch for actual parameter 1
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(57,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(57,9): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(57,30): error C2065: 'Node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(58,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(58,9): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(58,30): error C2065: 'Node': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(60,7): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(60,14): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(60,23): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(60,30): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(61,8): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(61,15): error C2223: left of '->hashmap' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(61,3): error C2198: 'void free(void *)': too few arguments for call
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(62,8): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(62,15): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(62,3): error C2198: 'void free(void *)': too few arguments for call
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(63,8): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(63,15): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(63,3): error C2198: 'void free(void *)': too few arguments for call
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(64,8): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(64,8): warning C4022: 'free': pointer mismatch for actual parameter 1
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(68,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(68,9): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(69,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(69,9): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(70,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(70,9): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(70,22): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(70,29): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(71,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(71,9): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(73,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(73,9): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(74,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(74,9): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(74,22): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(74,29): error C2223: left of '->head' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(75,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(75,9): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(76,2): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(76,9): error C2223: left of '->tail' must point to struct/union
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(78,9): error C2065: 'cache': undeclared identifier
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(78,2): warning C4047: 'return': 'int *' differs in levels of indirection from 'int'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(81,28): error C2143: syntax error: missing ')' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(81,28): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(81,35): error C2059: syntax error: ')'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(81,30): error C2054: expected '(' to follow 'cache'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(99,17): error C2143: syntax error: missing ')' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(99,17): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(99,26): error C2059: syntax error: 'type'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(99,33): error C2059: syntax error: ')'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(116,17): error C2143: syntax error: missing ')' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(116,17): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(116,26): error C2059: syntax error: 'type'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(116,44): error C2059: syntax error: ')'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(155,27): error C2143: syntax error: missing ')' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(155,27): error C2143: syntax error: missing '{' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(155,40): error C2143: syntax error: missing ';' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(155,46): error C2059: syntax error: ')'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(155,42): error C2054: expected '(' to follow 'node'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(163,22): error C2143: syntax error: missing ')' before '*'
+C:\Users\Kilia\Desktop\LRUCache\lru_cache.c(163,22): error C1003: error count exceeds 100; stopping compilation

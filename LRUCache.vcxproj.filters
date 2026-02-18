@@ -15,19 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hashmap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dllhash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lru.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hashmap2.c">
+    <ClCompile Include="lru_cache.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

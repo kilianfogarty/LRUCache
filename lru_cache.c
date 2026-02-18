@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+unsigned int hash(int key, int capacity);
+
 typedef struct Node {
 	int key;
 	int value;
@@ -15,7 +17,7 @@ typedef struct LRUCache {
 	int num_of_items;
 	Node* head;
 	Node* tail;
-	Node** hashmap
+	Node** hashmap;
 } LRUCache;
 
 Node* create_node(int key, int value) {
@@ -43,7 +45,7 @@ LRUCache* create_LRUCache(int capacity) {
 		return NULL;
 	}
 
-	cache->capacity = capacity * 2;
+	cache->capacity = capacity;
 	cache->num_of_items = 0;
 
 	cache->hashmap = calloc(capacity, sizeof(Node*));
@@ -55,7 +57,7 @@ LRUCache* create_LRUCache(int capacity) {
 	cache->head = malloc(sizeof(Node));
 	cache->tail = malloc(sizeof(Node));
 
-	if (!cache->head || cache->tail) {
+	if (!cache->head || !cache->tail) {
 		free(cache->hashmap);
 		free(cache->head);
 		free(cache->tail);
@@ -63,10 +65,12 @@ LRUCache* create_LRUCache(int capacity) {
 		return NULL;
 	}
 
+	cache->head->key = 0;
 	cache->head->prev = NULL;
 	cache->head->next = cache->tail;
 	cache->head->h_next = NULL;
 
+	cache->tail->key = 0;
 	cache->tail->prev = cache->head;
 	cache->tail->next = NULL;
 	cache->tail->h_next = NULL;
@@ -93,6 +97,9 @@ void free_LRUCache(LRUCache* cache) {
 }
 
 int get(LRUCache* cache, int key) {
+	if (!cache) {
+		return -1;
+	}
 	int index = hash(key, cache->capacity);
 	Node* curr = cache->hashmap[index];
 	while (curr) {
@@ -103,10 +110,13 @@ int get(LRUCache* cache, int key) {
 		}
 		curr = curr->h_next;
 	}
-	return NULL;
+	return -1;
 }
 
 int put(LRUCache* cache, int key, int value) {
+	if (!cache) {
+		return -1;
+	}
 	int index = hash(key, cache->capacity);
 	Node* curr = cache->hashmap[index];
 	while (curr) {
@@ -122,6 +132,10 @@ int put(LRUCache* cache, int key, int value) {
 	if (cache->num_of_items >= cache->capacity) {
 		Node* lru_node = cache->tail->prev;
 		remove_node(lru_node);
+		lru_node->prev = NULL;
+		lru_node->next = NULL;
+		lru_node->h_next = NULL;
+
 		remove_from_hashmap(cache, lru_node);
 		free(lru_node);
 		cache->num_of_items--;
@@ -147,6 +161,9 @@ void add_to_front(LRUCache* cache, Node* node) {
 }
 
 void remove_node(Node* node) {
+	if (!node) {
+		return;
+	}
 	node->prev->next = node->next;
 	node->next->prev = node->prev;
 }
@@ -163,6 +180,7 @@ void remove_from_hashmap(LRUCache* cache, Node* node) {
 			else {
 				cache->hashmap[index] = curr->h_next;
 			}
+			break;
 		}
 		prev = curr;
 		curr = curr->h_next;
@@ -170,6 +188,6 @@ void remove_from_hashmap(LRUCache* cache, Node* node) {
 }
 
 unsigned int hash(int key, int capacity) {
-	return abs(key) % capacity;
+	return (unsigned int)key % capacity;
 }
 
