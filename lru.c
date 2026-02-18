@@ -1,38 +1,101 @@
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#define INITIAL_SIZE 10
+typedef enum {
+	STRING,
+	LIST,
+	SET,
+	DICT
+} ValueType;
 
-/*
-* The API should only have put and get
-* I want it to store keys that are strings and values that are JSON blobs								
-* 
-* 
-*
-*/
+typedef struct Value {
+	ValueType type;
+	void* data;
+} Value;
 
-struct Node {
-	int key;
-	int value;
-	struct Node* next;
-	struct Node* prev;
-	struct Node* ht_next;
-};
+typedef struct Node {
+	char* key;
+	Value value;
+	Node* next;
+	Node* prev;
+	Node* ht_next;
+} Node;
 
-struct LRUCache {
+typedef struct {
 	int capacity;
 	int size;
-	struct Node** hash_table;
-	struct Node* head;
-	struct Node* tail;
-};
+	int buckets;
+
+	Node** hash_table;
+	Node* head;
+	Node* tail;
+} LRUCache;
 
 // hash helper, put, get, remove
 
-int hash(int key, int buckets) {
-	return key % buckets;
+unsigned long hash(const char* str, int buckets) {
+	unsigned long hash = 5381;
+	int c;
+	while ((c = *str++))
+		hash = ((hash << 5) + hash) + c; // hash * 33 + c
+	return hash % buckets;
 }
 
-int put(struct LRUCache* lru_cache, int key, int value) {
+Node* create_node(char* key, Value value) {
+	Node* node = malloc(sizeof(struct Node));
+
+	if (!node) {
+		return NULL;
+	}
+
+	node->key = strdup(key);
+	node->value = value;
+	node->prev = NULL;
+	node->next = NULL;
+	node->ht_next = NULL;
+
+	return node;
+}
+
+LRUCache* create_cache(int capacity) {
+	LRUCache* cache = malloc(sizeof(LRUCache));
+	if (!cache) {
+		return NULL;
+	}
+
+	cache->capacity = capacity;
+	cache->size = 0;
+	cache->buckets = capacity * 2; // 0.5 load allegedly?
+	cache->hash_table = calloc(cache->buckets, sizeof(Node*));
+	if (!cache->hash_table) {
+		free(cache);
+		return NULL;
+	}
+
+	cache->head = malloc(sizeof(Node));
+	cache->tail = malloc(sizeof(Node));
+
+	if (!cache->head || !cache->tail) {
+		free(cache->hash_table);
+		free(cache->head);
+		free(cache->tail);
+		free(cache);
+		return NULL;
+	}
+
+	cache->head->prev = NULL;
+	cache->head->next = cache->tail;
+
+	cache->tail->prev = cache->head;
+	cache->tail->next = NULL;
+
+
+	return cache;
+}
+
+
+int put(struct LRUCache* lru_cache, char* key, struct Value value) {
 
 	// Check to see if any parameters that are passed in are null
 
@@ -59,16 +122,6 @@ int put(struct LRUCache* lru_cache, int key, int value) {
 }
 
 
-//Node initializer helper
-struct Node* initialize_node(int key, int value) {
-	struct Node* node = malloc(sizeof(struct Node));
-	node->key = key;
-	node->value = value;
-	node->next = NULL;
-	node->prev = NULL;
-	node->ht_next = NULL;
-	return node;
-}
 
 // remove_node helper, add to head helper
 
@@ -90,23 +143,4 @@ int get(struct LRUCache* lru_cache, int key) {
 
 int remove(struct LRUCache* lru_cache, int key) {
 	return 0;
-}
-
-// Create node, create cache functions
-
-struct Node* create_node(int key, int value) {
-	struct Node* node = malloc(sizeof(struct Node));
-	node->key = key;
-	node->value = value;
-	node->prev = NULL;
-	node->next = NULL;
-	node->ht_next = NULL;
-	return node;
-}
-
-struct LRUCache* create_cache(int capacity) {
-	struct LRUCache* cache = malloc(sizeof(struct LRUCache));
-
-
-	return cache;
 }

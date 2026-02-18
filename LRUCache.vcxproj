@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="dllhash.c" />
     <ClCompile Include="hashmap.c" />
+    <ClCompile Include="hashmap2.c" />
     <ClCompile Include="lru.c" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
