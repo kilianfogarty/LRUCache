@@ -161,7 +161,7 @@ void add_to_front(LRUCache* cache, Node* node) {
 }
 
 void remove_node(Node* node) {
-	if (!node) {
+	if (!node || !node->prev || !node->next) {
 		return;
 	}
 	node->prev->next = node->next;
