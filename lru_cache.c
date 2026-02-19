@@ -2,38 +2,45 @@
 #include <stdlib.h>
 #include <string.h>
 
-unsigned int hash(int key, int capacity);
+/*
+* 
+* Data Structures
+* 
+*/
 
 typedef struct Node {
 	int key;
 	int value;
 	Node* prev;
 	Node* next;
-	Node* h_next;
+	Node* h_next;	// Next node in the hashmap, not the DLL
 } Node;
 
 typedef struct LRUCache {
 	int capacity;
 	int num_of_items;
-	Node* head;
-	Node* tail;
+	Node* head;		// Sentinel Head
+	Node* tail;		// Sentinel Tail
 	Node** hashmap;
 } LRUCache;
 
-Node* create_node(int key, int value) {
-	Node* node = malloc(sizeof(Node));
-	if (!node) {
-		return NULL;
-	}
+/*
+* 
+* Private Function Prototypes
+* 
+*/
 
-	node->key = key;
-	node->value = value;
-	node->prev = NULL;
-	node->next = NULL;
-	node->h_next = NULL;
+static unsigned int hash(int key, int capacity);
+static Node* create_node(int key, int value);
+static void add_to_front(LRUCache* cache, Node* node);
+static void remove_node(Node* node);
+static void remove_from_hashmap(LRUCache* cache, Node* node);
 
-	return node;
-}
+/*
+* 
+* Public API
+* 
+*/
 
 LRUCache* create_LRUCache(int capacity) {
 	if (capacity <= 0) {
@@ -113,6 +120,12 @@ int get(LRUCache* cache, int key) {
 	return -1;
 }
 
+/*
+* -1 = failure
+* 0 = updated
+* 1 = inserted
+*/
+
 int put(LRUCache* cache, int key, int value) {
 	if (!cache) {
 		return -1;
@@ -152,7 +165,32 @@ int put(LRUCache* cache, int key, int value) {
 	return 1;
 }
 
-void add_to_front(LRUCache* cache, Node* node) {
+/* 
+* 
+* Private Helper Functions
+* 
+*/
+
+static unsigned int hash(int key, int capacity) {
+	return (unsigned int)key % capacity;
+}
+
+static Node* create_node(int key, int value) {
+	Node* node = malloc(sizeof(Node));
+	if (!node) {
+		return NULL;
+	}
+
+	node->key = key;
+	node->value = value;
+	node->prev = NULL;
+	node->next = NULL;
+	node->h_next = NULL;
+
+	return node;
+}
+
+static void add_to_front(LRUCache* cache, Node* node) {
 	node->next = cache->head->next;
 	node->prev = cache->head;
 
@@ -160,7 +198,7 @@ void add_to_front(LRUCache* cache, Node* node) {
 	cache->head->next = node;
 }
 
-void remove_node(Node* node) {
+static void remove_node(Node* node) {
 	if (!node || !node->prev || !node->next) {
 		return;
 	}
@@ -168,7 +206,7 @@ void remove_node(Node* node) {
 	node->next->prev = node->prev;
 }
 
-void remove_from_hashmap(LRUCache* cache, Node* node) {
+static void remove_from_hashmap(LRUCache* cache, Node* node) {
 	int index = hash(node->key, cache->capacity);
 	Node* curr = cache->hashmap[index];
 	Node* prev = NULL;
@@ -186,8 +224,3 @@ void remove_from_hashmap(LRUCache* cache, Node* node) {
 		curr = curr->h_next;
 	}
 }
-
-unsigned int hash(int key, int capacity) {
-	return (unsigned int)key % capacity;
-}
-
