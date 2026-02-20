@@ -176,7 +176,7 @@ static unsigned int hash(char* key, unsigned int hashmap_size) {
 	unsigned long hash = 0;
 	int c;
 
-	while ((c = *str++)) {
+	while ((c = *key++)) {
 		hash = c + (hash << 6) + (hash << 16) - hash;
 	}
 	return hash % hashmap_size;
@@ -189,7 +189,7 @@ static Node* create_node(const char* key, int value) {
 	}
 
 	node->key = strdup(key);
-	if (node->key) {
+	if (!node->key) {
 		free(node);
 		return NULL;
 	}
