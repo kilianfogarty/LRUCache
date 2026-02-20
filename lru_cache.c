@@ -9,7 +9,7 @@
 */
 
 typedef struct Node {
-	int key;
+	char* key;
 	int value;
 	Node* prev;
 	Node* next;
@@ -17,8 +17,9 @@ typedef struct Node {
 } Node;
 
 typedef struct LRUCache {
-	int capacity;
-	int num_of_items;
+	unsigned int capacity;
+	unsigned int num_of_items;
+	unsigned int hashmap_size;
 	Node* head;		// Sentinel Head
 	Node* tail;		// Sentinel Tail
 	Node** hashmap;
@@ -30,8 +31,8 @@ typedef struct LRUCache {
 * 
 */
 
-static unsigned int hash(int key, int capacity);
-static Node* create_node(int key, int value);
+static unsigned int hash(const char* key, unsigned int hashmap_size);
+static Node* create_node(const char* key, int value);
 static void add_to_front(LRUCache* cache, Node* node);
 static void remove_node(Node* node);
 static void remove_from_hashmap(LRUCache* cache, Node* node);
@@ -42,7 +43,7 @@ static void remove_from_hashmap(LRUCache* cache, Node* node);
 * 
 */
 
-LRUCache* create_LRUCache(int capacity) {
+LRUCache* create_LRUCache(unsigned int capacity) {
 	if (capacity <= 0) {
 		return NULL;
 	}
@@ -54,8 +55,9 @@ LRUCache* create_LRUCache(int capacity) {
 
 	cache->capacity = capacity;
 	cache->num_of_items = 0;
+	cache->hashmap_size = capacity * 2;
 
-	cache->hashmap = calloc(capacity, sizeof(Node*));
+	cache->hashmap = calloc(cache->hashmap_size, sizeof(Node*));
 	if (!cache->hashmap) {
 		free(cache);
 		return NULL;
@@ -72,12 +74,12 @@ LRUCache* create_LRUCache(int capacity) {
 		return NULL;
 	}
 
-	cache->head->key = 0;
+	cache->head->key = NULL;
 	cache->head->prev = NULL;
 	cache->head->next = cache->tail;
 	cache->head->h_next = NULL;
 
-	cache->tail->key = 0;
+	cache->tail->key = NULL;
 	cache->tail->prev = cache->head;
 	cache->tail->next = NULL;
 	cache->tail->h_next = NULL;
@@ -93,6 +95,7 @@ void free_LRUCache(LRUCache* cache) {
 	Node* curr = cache->head->next;
 	while (curr != cache->tail) {
 		Node* next = curr->next;
+		free(curr->key);
 		free(curr);
 		curr = next;
 	}
@@ -103,14 +106,15 @@ void free_LRUCache(LRUCache* cache) {
 	free(cache);
 }
 
-int get(LRUCache* cache, int key) {
+// returns -1 if not found
+int get(LRUCache* cache, const char* key) {
 	if (!cache) {
 		return -1;
 	}
-	int index = hash(key, cache->capacity);
+	unsigned int index = hash(key, cache->hashmap_size);
 	Node* curr = cache->hashmap[index];
 	while (curr) {
-		if (curr->key == key) {
+		if (strcmp(curr->key, key) == 0) {
 			remove_node(curr);
 			add_to_front(cache, curr);
 			return curr->value;
@@ -126,14 +130,14 @@ int get(LRUCache* cache, int key) {
 * 1 = inserted
 */
 
-int put(LRUCache* cache, int key, int value) {
+int put(LRUCache* cache, const char* key, int value) {
 	if (!cache) {
 		return -1;
 	}
-	int index = hash(key, cache->capacity);
+	unsigned int index = hash(key, cache->hashmap_size);
 	Node* curr = cache->hashmap[index];
 	while (curr) {
-		if (curr->key == key) {
+		if (strcmp(curr->key, key) == 0) {
 			curr->value = value;
 			remove_node(curr);
 			add_to_front(cache, curr);
@@ -145,11 +149,8 @@ int put(LRUCache* cache, int key, int value) {
 	if (cache->num_of_items >= cache->capacity) {
 		Node* lru_node = cache->tail->prev;
 		remove_node(lru_node);
-		lru_node->prev = NULL;
-		lru_node->next = NULL;
-		lru_node->h_next = NULL;
-
 		remove_from_hashmap(cache, lru_node);
+		free(lru_node->key);
 		free(lru_node);
 		cache->num_of_items--;
 	}
@@ -171,17 +172,28 @@ int put(LRUCache* cache, int key, int value) {
 * 
 */
 
-static unsigned int hash(int key, int capacity) {
-	return (unsigned int)key % capacity;
+static unsigned int hash(char* key, unsigned int hashmap_size) {
+	unsigned long hash = 0;
+	int c;
+
+	while ((c = *str++)) {
+		hash = c + (hash << 6) + (hash << 16) - hash;
+	}
+	return hash % hashmap_size;
 }
 
-static Node* create_node(int key, int value) {
+static Node* create_node(const char* key, int value) {
 	Node* node = malloc(sizeof(Node));
 	if (!node) {
 		return NULL;
 	}
 
-	node->key = key;
+	node->key = strdup(key);
+	if (node->key) {
+		free(node);
+		return NULL;
+	}
+
 	node->value = value;
 	node->prev = NULL;
 	node->next = NULL;
@@ -207,7 +219,7 @@ static void remove_node(Node* node) {
 }
 
 static void remove_from_hashmap(LRUCache* cache, Node* node) {
-	int index = hash(node->key, cache->capacity);
+	unsigned int index = hash(node->key, cache->hashmap_size);
 	Node* curr = cache->hashmap[index];
 	Node* prev = NULL;
 	while (curr) {
